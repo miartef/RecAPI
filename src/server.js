@@ -1,3 +1,4 @@
+import "dotenv/config";
 import express from "express";
 import { prisma } from "./.lib/prisma.ts";
 
@@ -5,14 +6,11 @@ const app = express();
 
 app.use(express.json());
 
-// Rota inicial de verificação
 app.get("/", (req, res) => {
   res.json({ mensagem: "API StreamFit rodando com sucesso!" });
 });
 
-// ==================== TREINOS ====================
 
-// Criar treino
 app.post("/treinos", async (req, res) => {
   const { nome, objetivo } = req.body;
 
@@ -32,7 +30,6 @@ app.post("/treinos", async (req, res) => {
   }
 });
 
-// Listar todos os treinos
 app.get("/treinos", async (req, res) => {
   try {
     const treinos = await prisma.treino.findMany({
@@ -50,7 +47,6 @@ app.get("/treinos", async (req, res) => {
   }
 });
 
-// Buscar treino específico por ID
 app.get("/treinos/:id", async (req, res) => {
   const id = parseInt(req.params.id);
 
@@ -79,7 +75,6 @@ app.get("/treinos/:id", async (req, res) => {
   }
 });
 
-// Atualizar treino
 const atualizarTreino = async (req, res) => {
   const id = parseInt(req.params.id || req.body.id);
   const { nome, objetivo } = req.body;
@@ -113,7 +108,6 @@ const atualizarTreino = async (req, res) => {
 app.put("/treinos/:id", atualizarTreino);
 app.put("/treinos", atualizarTreino);
 
-// Excluir treino
 app.delete("/treinos/:id", async (req, res) => {
   const id = parseInt(req.params.id);
 
@@ -137,9 +131,7 @@ app.delete("/treinos/:id", async (req, res) => {
   }
 });
 
-// ==================== EXERCÍCIOS ====================
 
-// Criar exercício
 app.post("/exercicios", async (req, res) => {
   const { nome, grupoMuscular } = req.body;
 
@@ -161,7 +153,6 @@ app.post("/exercicios", async (req, res) => {
   }
 });
 
-// Listar exercícios
 app.get("/exercicios", async (req, res) => {
   try {
     const exercicios = await prisma.exercicios.findMany();
@@ -173,7 +164,6 @@ app.get("/exercicios", async (req, res) => {
   }
 });
 
-// Buscar exercício por ID
 app.get("/exercicios/:id", async (req, res) => {
   const id = parseInt(req.params.id);
 
@@ -203,7 +193,6 @@ app.get("/exercicios/:id", async (req, res) => {
   }
 });
 
-// Excluir exercício
 app.delete("/exercicios/:id", async (req, res) => {
   const id = parseInt(req.params.id);
 
@@ -233,9 +222,6 @@ app.delete("/exercicios/:id", async (req, res) => {
   }
 });
 
-// ==================== VÍNCULO TREINO - EXERCÍCIO ====================
-
-// Vincular exercício a treino
 app.post("/treinos/vincular", async (req, res) => {
   const treinoId = parseInt(req.body.treinoId);
   const exercicioId = parseInt(req.body.exercicioId);
@@ -272,7 +258,6 @@ app.post("/treinos/vincular", async (req, res) => {
   }
 });
 
-// Listar exercícios de um treino
 app.get("/treinos/:id/exercicios", async (req, res) => {
   const id = parseInt(req.params.id);
 
@@ -307,7 +292,6 @@ app.get("/treinos/:id/exercicios", async (req, res) => {
   }
 });
 
-// Remover exercício de um treino
 app.delete("/treinos/:id/exercicios/:exercicioId", async (req, res) => {
   const treinoId = parseInt(req.params.id);
   const exercicioId = parseInt(req.params.exercicioId);
