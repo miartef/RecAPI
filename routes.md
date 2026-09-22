@@ -1,13 +1,16 @@
-Criar treino
+
+
+
+
 
 http://localhost:3333/treinos --- vai selecionar post
 
 {
-  "nome": "Perna",
-  "objetivo": "Treinar perna"
+  "nome": "Braço",
+  "objetivo": "Treinar braço"
 }
 
-get --- para ver os treinos
-post --- para criar
-put --- para atualizar
+get --- para ver os treinos 
+post --- para criar 
+put --- para atualizar 
 delete --- para deletar

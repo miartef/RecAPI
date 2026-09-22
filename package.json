@@ -22,13 +22,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nicolasgalvan-dot/RA-willer.git"
+    "url": "git+https://github.com/miartef/RecAPI.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/nicolasgalvan-dot/RA-willer/issues"
+    "url": "https://github.com/miartef/RecAPI/issues"
   },
   "homepage": "https://github.com/nicolasgalvan-dot/RA-willer#readme"
 }
